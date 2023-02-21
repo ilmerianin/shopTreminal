@@ -38,7 +38,7 @@ https://dashboard.stripe.com/apikeys
 -------
 
  
-
+```
  git clone https://github.com/ilmerianin/shopTreminal.git  
  cd shopTreminal  
  conda env create  
@@ -46,7 +46,7 @@ https://dashboard.stripe.com/apikeys
  python manage.py migrate  
  python manage.py runserver  
 
----
+```
 
 ```
 
@@ -64,8 +64,7 @@ https://dashboard.stripe.com/apikeys
 
 ```
 python manage.py createsuperuser
-
-или воспользуйтесь примером базы включённом в репозиторий 
+ 
 
 ---
 
