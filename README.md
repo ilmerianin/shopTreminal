@@ -49,7 +49,7 @@ python manage.py migrate
 python manage.py runserver
 ---
 
-
+---
 git clone https://github.com/ilmerianin/shopTreminal.git
 cd shopTreminal
 python -m venv venv
@@ -65,4 +65,5 @@ python manage.py createsuperuser
 
 или воспользуйтесь примером базы
 
+---
 
