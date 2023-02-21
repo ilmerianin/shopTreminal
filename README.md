@@ -39,23 +39,24 @@ https://dashboard.stripe.com/apikeys
 
 ---
 
-git clone https://github.com/ilmerianin/shopTreminal.git  
-cd shopTreminal  
-conda env create  
-conda activate   
-python manage.py migrate  
-python manage.py runserver  
----
+ git clone https://github.com/ilmerianin/shopTreminal.git  
+ cd shopTreminal  
+ conda env create  
+ conda activate   
+ python manage.py migrate  
+ python manage.py runserver  
 
 ---
 
-git clone https://github.com/ilmerianin/shopTreminal.git
-cd shopTreminal
-python -m venv venv
-.\venv\Scripts\activate
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
+---
+
+ git clone https://github.com/ilmerianin/shopTreminal.git   
+ cd shopTreminal   
+ python -m venv venv   
+ .\venv\Scripts\activate   
+ pip install -r requirements.txt   
+ python manage.py migrate   
+ python manage.py runserver   
 
 ```
 
