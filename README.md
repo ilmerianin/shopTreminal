@@ -20,7 +20,7 @@
 
 * Просмотр Django Моделей в Django Admin панели - доступно по адресу `http://212.8.247.164/admin/`
 
-* Запуск приложения на удаленном сервере, доступном для тестирования - запущенно на `http://212.8.247.164/shop/  (ssh личный (игнорируйте предупреждения о опастности)
+* Запуск приложения на удаленном сервере, доступном для тестирования - запущенно на `http://212.8.247.164/shop/  (ssh личный (игнорируйте предупреждения о опастности))
 
 Получение всех api ключей
 -------------------------
@@ -35,12 +35,13 @@ https://dashboard.stripe.com/apikeys
 Запуск
 ------
 
-git clone https://github.com/ilmerianin/shopTreminal.git
-cd shopTreminal
-conda env create
-conda activate 
-python manage.py migrate
-python manage.py runserver
+`git clone https://github.com/ilmerianin/shopTreminal.git
+`cd shopTreminal
+`conda env create
+`conda activate 
+`python manage.py migrate
+`python manage.py runserver
+------
 
 
 git clone https://github.com/ilmerianin/shopTreminal.git
