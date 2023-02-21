@@ -34,12 +34,17 @@ https://dashboard.stripe.com/apikeys
 
 Запуск
 ------
-_git clone https://github.com/ilmerianin/shopTreminal.git
-_cd shopTreminal
-_conda env create
-_conda activate 
-_python manage.py migrate
-_python manage.py runserver
+git clone https://github.com/ilmerianin/shopTreminal.git
+
+cd shopTreminal
+
+conda env create
+
+conda activate 
+
+python manage.py migrate
+
+python manage.py runserver
 ------
 
 
