@@ -64,7 +64,6 @@ https://dashboard.stripe.com/apikeys
 
 ```
 python manage.py createsuperuser
+```
  
-
----
 
