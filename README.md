@@ -37,7 +37,7 @@ https://dashboard.stripe.com/apikeys
 Запуск
 -------
 
----
+ 
 
  git clone https://github.com/ilmerianin/shopTreminal.git  
  cd shopTreminal  
@@ -48,7 +48,7 @@ https://dashboard.stripe.com/apikeys
 
 ---
 
----
+```
 
  git clone https://github.com/ilmerianin/shopTreminal.git   
  cd shopTreminal   
@@ -60,11 +60,12 @@ https://dashboard.stripe.com/apikeys
 
 ```
 
-#### Для админки:
+Для админки:
+
 ```
 python manage.py createsuperuser
 
-или воспользуйтесь примером базы
+или воспользуйтесь примером базы включённом в репозиторий 
 
 ---
 
