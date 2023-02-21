@@ -1,0 +1,131 @@
+
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stripe Identity Sample</title>
+    <meta name="description" content="A demo of Stripe Identity" />
+	  <!-- Добавление дополнительного статического CSS файла -->
+	    <!-- Добавление дополнительного статического CSS файла -->
+  {% load static %}
+  {% csrf_token %} 
+	<link rel="stylesheet" href="{% static 'css/global.css' %}">
+	<link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+	
+    <!--<link rel="stylesheet" href="static/normalize.css" /> -->
+    <!-- <link rel="stylesheet" href="static/global.css" /> -->
+    <script src="https://js.stripe.com/v3/"></script> <!--Verify your identity   Add Stripe.js to your page -->
+  </head>
+  <body>
+    <div class="sr-root">
+      <div class="sr-main">
+		
+        <section class="container">
+          <div>
+			<!--Verify your identity  -->
+            <h1>Verify your identity to book</h1>
+            <h4>Get ready to take a photo of your ID and a selfie  </h4>
+
+            <button id="verify-button">Verify me</button>{% csrf_token %} 
+          </div>
+        </section>
+			<div>
+			<h1>      <h1>
+			</div>
+        <section class="container">
+			
+            <!-- Use action="/create-checkout-session.php" if your server is PHP based. -->
+            <form action="/shop/create-checkout-session" method="POST">{% csrf_token %} 
+              <button   type="submit">Checkout</button> 
+			  
+            </form>
+        </section>
+		
+		<section class="container">
+			
+            <!-- Use action="/create-checkout-session.php" if your server is PHP based. -->
+            
+              <button   id="submit-button">Checkout 2 </button> 
+			  
+            
+        </section>
+        
+      </div>
+	  	<img alt height="256" src="{% static 'pod.jpeg' %}" width="256" >
+    </div>
+	</body>
+    
+
+    <script type="text/javascript">
+	  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+      document.addEventListener('DOMContentLoaded', async () => {
+
+        // Set your publishable key: remember to change this to your live publishable key in production
+        // Find your keys here: https://dashboard.stripe.com/apikeys
+        const {publishableKey} = await fetch('/shop/config').then(r=>r.json());
+		console.log("вывод verify-button publishableKey "+publishableKey);
+        const stripe = Stripe(publishableKey); // инициализ Strip
+		//var $crf_token = $('[name="csrfmiddlewaretoken"]').attr('value'); 
+
+        var verifyButton = document.getElementById('verify-button');
+		
+		console.log("вывод verify-button"); 
+        verifyButton.addEventListener('click', async () => {
+          // Get the VerificationSession client secret using the server-side
+          // endpoint you created in step 3.
+		  console.log("click verify-button"); 
+          try {
+
+            // Create the VerificationSession on the server.
+            const {client_secret} = await fetch('/shop/create-verification-session', {headers: {'X-CSRFToken': csrftoken}}, {
+              method: 'POST',
+			  }).then(r => r.json());
+			
+            // Open the modal on the client.
+            const {error} = await stripe.verifyIdentity(client_secret);
+            if(!error) {
+              //window.location.href = '/shop/submitted.html';
+			  console.log("error "+error);
+			  console.log("stripe "+stripe);
+            } else {
+			  console.log('error ' +  error.message);
+              alert(error.message);
+            }
+          } catch(e) {
+            alert(e.message);
+          }
+		  		// Call your backend to create the Checkout Session
+		fetch('/create-checkout-session',  {
+						  headers: {'X-CSRFToken': csrftoken}}, {
+		  method: 'POST',
+		})
+		.then(function(response) {
+		  
+		  return response.json();
+		})
+		.then(function(session) {
+		   console.log('session) ' +session);
+		  return stripe.redirectToCheckout({ sessionId: session.client_secret.id });
+		})
+		.then(function(result) {
+		  // If `redirectToCheckout` fails due to a browser or network
+		  // error, you should display the localized error message to your
+		  // customer using `error.message`.
+		  if (result.error) {
+			alert(result.error.message);
+		  }
+		});
+		
+        })
+
+
+
+      })
+    </script>
+
+</html>
+
+{% endblock %}

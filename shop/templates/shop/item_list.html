@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Список всех товаров (items)</h1>
+	<p>добавление через admin-ку</p>
+
+    {% if item_list %}
+    <ul>
+
+      {% for item in item_list %}
+      <li>
+	    
+        <a href=" {{item.get_absolute_url}}">  {{item.name}} ({{item.price}} $) {{item.description}}  </a> 
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>Товаров нет.</p>
+    {% endif %}
+{% endblock %}
